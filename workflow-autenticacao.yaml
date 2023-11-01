@@ -1,0 +1,22 @@
+name: Auth Workflow
+
+on:
+  push:
+    branches:
+    - main
+jobs:
+  login:
+    name: Auth in App Python
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      
+      - name: Autenticar
+        run: python autenticacao.py ${{ secrets.USER_NAME }} ${{ secrets.PASSWORD }}
